@@ -7,7 +7,7 @@ from keras.datasets import cifar10
 from keras.callbacks import ModelCheckpoint
 
 model = MiniVGGNet.build(width = 32, height = 32, depth = 3, classes = 10);
-weights = "artifacts/minivggnet.hdf5"
+weights = "/artifacts/minivggnet.hdf5"
 
 print("[INFO] accessing CIFAR")
 (trainX, trainY), (testX, testY) = cifar10.load_data();
