@@ -1,3 +1,4 @@
+
 from nn import MiniVGGNet
 from keras.optimizers import SGD
 from sklearn.preprocessing import LabelBinarizer
@@ -16,7 +17,7 @@ le = LabelBinarizer();
 trainY, testY = le.fit_transform(trainY), le.fit_transform(testY);
 le.fit_transform(testY);
 
-print(testY);  
+print(testY);
 
 print ("[INFO] Compiling model ...");
 opt = SGD(lr = 0.01);
