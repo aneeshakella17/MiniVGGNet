@@ -1,6 +1,8 @@
 # import the necessary packages
 from keras.callbacks import BaseLogger
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib import pyplot as plt
 import numpy as np
 import json
 import os
