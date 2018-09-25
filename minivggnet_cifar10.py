@@ -1,4 +1,4 @@
-
+from trainingmonitor import TrainingMonitor
 from nn import MiniVGGNet
 from keras.optimizers import SGD
 from sklearn.preprocessing import LabelBinarizer
@@ -8,6 +8,7 @@ from keras.callbacks import ModelCheckpoint
 
 model = MiniVGGNet.build(width = 32, height = 32, depth = 3, classes = 10);
 weights = "/artifacts/minivggnet.hdf5"
+
 
 print("[INFO] accessing CIFAR")
 (trainX, trainY), (testX, testY) = cifar10.load_data();
@@ -24,7 +25,12 @@ model.compile(loss="categorical_crossentropy", optimizer=opt,
 
 print ("[INFO] BUILDING MODEL")
 checkpoint = ModelCheckpoint(weights, monitor = "val_loss", save_best_only=True, verbose =1 );
-callbacks = [checkpoint];
+
+jsonpath = "/artifacts/mini_vggnet.json"
+picpath = "/artifacts/pic.jpg"
+
+
+callbacks = [checkpoint, TrainingMonitor(picpath, jsonPath = jsonpath)];
 
 H = model.fit(trainX, trainY, validation_data=(testX, testY),
 	batch_size=128, epochs=90, callbacks = callbacks, verbose=1)
